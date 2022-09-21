@@ -17,7 +17,7 @@ ext {
   localInterlokRepo = project.findProperty('localInterlokRepo') ?: 'unknown'
   nexusBaseUrl  = 'https://nexus.adaptris.net'
   log4j2Version='2.19.0'
-  slf4jVersion='2.0.1'
+  slf4jVersion='2.0.2'
   // Make semi-required optional components have an explicit version
   interlokVersion = project.findProperty('interlokVersion') ?: '4.5.0-RELEASE'
   interlokHelperVersion = project.findProperty('interlokVersion') ?: interlokVersion
@@ -268,7 +268,7 @@ dependencies {
   interlokRuntime ("com.thoughtworks.xstream:xstream:1.4.19")
 
   // CVE-2022-2048
-  interlokRuntime ("org.eclipse.jetty.aggregate:jetty-all:9.4.48.v20220622")
+  interlokRuntime ("org.eclipse.jetty.aggregate:jetty-all:9.4.49.v20220914")
 
   interlokTestRuntime group: "com.adaptris", name: "interlok-service-tester", version: interlokPatch.serviceTesterVersion(), changing: true
   interlokWar group: "com.adaptris.ui", name: "interlok", version: interlokPatch.uiVersion(), changing: true, ext: "war"
