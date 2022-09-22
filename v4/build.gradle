@@ -275,7 +275,7 @@ dependencies {
   // CVE-2022-2048
   interlokRuntime ("org.eclipse.jetty.aggregate:jetty-all:9.4.49.v20220914")
 
-  interlokRuntime ("jakarta.jms:jakarta.jms-api:2.0.3")
+  interlokRuntime ("jakarta.jms:jakarta.jms-api:3.1.0")
   // snakeyaml 1.30 CVE-2022-25857, CVE-2022-38749, CVE-2022-38751, CVE-2022-38752, CVE-2022-38750
   // We're end up with jackson as a transitive deps in almost all cases so this
   // isn't a stretch.
