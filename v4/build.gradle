@@ -5,7 +5,7 @@ buildscript {
     maven { url 'https://plugins.gradle.org/m2/' }
   }
   dependencies {
-    classpath 'org.owasp:dependency-check-gradle:7.3.0'
+    classpath 'org.owasp:dependency-check-gradle:7.4.4'
   }
 }
 
@@ -17,7 +17,7 @@ ext {
   localInterlokRepo = project.findProperty('localInterlokRepo') ?: 'unknown'
   nexusBaseUrl  = 'https://nexus.adaptris.net'
   log4j2Version='2.19.0'
-  slf4jVersion='2.0.3'
+  slf4jVersion='2.0.6'
   jakartaJmsSubstitution='jakarta.jms:jakarta.jms-api:2.0.3'
   jakartaActivationSubstitution='com.sun.activation:jakarta.activation:1.2.2'
   jakartaMailSubstitution='com.sun.mail:jakarta.mail:1.6.7'
@@ -243,7 +243,7 @@ configurations.all {
 
     substitute module('javax.validation:validation-api') using module('jakarta.validation:jakarta.validation-api:2.0.2')
     // switch to mwiede:jsch branch (should still be optimistically upgraded)
-    substitute module('com.jcraft:jsch') using module('com.github.mwiede:jsch:0.2.4')
+    substitute module('com.jcraft:jsch') using module('com.github.mwiede:jsch:0.2.6')
 
     // Redirect a bunch of javamail stuffs as well. This is the list from mvnrepository.com
     substitute module('com.sun.mail:javax.mail') using module("$jakartaMailSubstitution")
@@ -324,7 +324,7 @@ dependencies {
   interlokRuntime ('jakarta.management.j2ee:jakarta.management.j2ee-api:1.1.4')
 
   // CVE-2021-39139 (4.2-SNAPSHOT is already at 1.4.18)
-  interlokRuntime ("com.thoughtworks.xstream:xstream:1.4.19")
+  interlokRuntime ("com.thoughtworks.xstream:xstream:1.4.20")
 
   // CVE-2022-2048 - use the bom to upgrade things we can.
   interlokRuntime (platform("org.eclipse.jetty:jetty-bom:9.4.49.v20220914"))
@@ -332,10 +332,13 @@ dependencies {
   // CVE-2022-42889
   interlokRuntime ("org.apache.commons:commons-text:1.10.0")
 
+  // CVE-2021-37533
+  interlokRuntime ("commons-net:commons-net:3.9.0")
+
   // snakeyaml 1.30 CVE-2022-25857, CVE-2022-38749, CVE-2022-38751, CVE-2022-38752, CVE-2022-38750
   // We're end up with jackson as a transitive deps in almost all cases so this
   // isn't a stretch.
-  interlokRuntime (platform("com.fasterxml.jackson:jackson-bom:2.14.0"))
+  interlokRuntime (platform("com.fasterxml.jackson:jackson-bom:2.14.1"))
   interlokRuntime ("com.fasterxml.jackson.core:jackson-core")
   interlokRuntime ("com.fasterxml.jackson.core:jackson-annotations")
   interlokRuntime ("com.fasterxml.jackson.core:jackson-databind")
@@ -351,7 +354,7 @@ dependencies {
   interlokJavadocs group: "com.adaptris", name: "interlok-core", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
   interlokJavadocs group: "com.adaptris", name: "interlok-common", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
 
-  interlokVerifyReport("com.adaptris:interlok-verify-report:3.1.0")
+  interlokVerifyReport("com.adaptris:interlok-verify-report:3.2.0")
 
   antJunit ("org.apache.ant:ant-junit:1.10.12")
 }
